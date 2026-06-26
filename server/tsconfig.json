@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    "strict": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    // "ignoreDeprecations": "6.0",
+    "lib": ["esnext"],
+    "types": ["node"],
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "isolatedModules": true,
+
+    "noUncheckedIndexedAccess": true,
+    // fuck off
+    // "exactOptionalPropertyTypes": true,
+
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+
+    "paths": {
+      "@controllers/*": ["./controllers/*"],
+      "@lib/*": ["./lib/*"],
+      "@middleware/*": ["./middleware/*"],
+      "@models/*": ["./models/*"],
+      "@prisma/*": ["./prisma/*"],
+      "@routes/*": ["./routes/*"],
+    }
+  }
+}

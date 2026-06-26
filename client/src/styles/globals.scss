@@ -1,0 +1,199 @@
+@use "_variables" as *;
+
+// @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+// @media (prefers-color-scheme: dark) {
+// @media (prefers-color-scheme: light) {
+//     html {
+//         color-scheme: light;
+//     }
+//     body {
+//         background-color: $white1 !important;
+//         color: $black1 !important;
+//     }
+//     header, footer {
+//         background-color: $white2 !important;
+//     }
+// }
+
+* {
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    font-family: $primaryFont, $fallbackFontStack;
+
+}
+
+body {
+    background-color: $white1;
+    color: $white1;
+}
+
+header, footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+    position: absolute;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+
+    &.column {
+        flex-direction: column;
+    }
+
+    &.left {
+        justify-content: flex-start;
+    }
+
+    &.right {
+        justify-content: flex-end;
+    }
+}
+
+#main-homepage {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    // max-width: 1600px;
+    // padding: 30px 0;
+}
+
+a {
+    text-decoration: none;
+    color: $black1;
+}
+
+h1 {
+    font-family: $primaryFont, $fallbackFontStack;
+    color: $black1;
+}
+
+#main {
+    margin: 0 auto;
+    width: 100%;
+    max-width: $defaultMaxWidth;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+button {
+    border: 0;
+    outline: 0;
+    background: #0000;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+// .dropdown {
+//     position: relative;
+//     ul {
+//         margin: 0;
+//         padding: 0;
+//     }
+
+//     li {
+//         padding: 10px 20px;
+//         font-size: 16px;
+//         font-family: $primaryFont, $fallbackFontStack;
+//         // border-bottom: 1px solid #000;
+
+//         svg {
+//             margin-right: 3px;
+//         }
+
+//         &:hover {
+//             background: $white1;
+//         }
+//     }
+
+//     .dropdown-menu {
+//         // display: none;
+//         position: absolute;
+//         background: $white2;
+
+//         button {
+//             padding: 0;
+//             width: 100%;
+//         }
+//     }
+// }
+
+#popup-holder {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0009;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    font-family: $primaryFont, $fallbackFontStack;
+
+    #popup-window {
+        width: 30%;
+        background-color: $white1;
+        color: $black1;
+        padding: 20px;
+
+        &.warn {
+            border-top: 5px solid sandybrown;
+        }
+        &.error {
+            border-top: 5px solid rgb(196, 78, 78);
+        }
+        &.normal {
+            border-top: 5px solid rgb(90, 90, 211);
+        }
+    }
+
+    #popup-message {
+        margin-bottom: 20px;
+    }
+
+    #popup-window-buttons-holder {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+
+        button {
+            background-color: #0003;
+            margin: 0 0 0 10px;
+            padding: 8px;
+            font-size: 16px;
+            font-family: $primaryFont, $fallbackFontStack;
+
+            &.yes {
+                background-color: rgb(55, 158, 55);
+            }
+            &.no {
+                background-color: rgb(204, 80, 80);
+            }
+
+            &:hover {
+                filter: contrast(0.5);
+            }
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}

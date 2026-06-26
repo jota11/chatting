@@ -1,0 +1,35 @@
+generator client {
+    provider = "prisma-client"
+    output   = "../src/generated/prisma"
+}
+
+datasource db {
+    provider = "mysql"
+}
+
+model User {
+    id               Int       @id @default(autoincrement())
+    userId           String    @default(uuid()) @db.Char(36)
+    email            String    @unique
+    name             String?
+    username         String    @unique @db.VarChar(32)
+    password         String
+    profilePic       String?
+    messagesSent     Message[] @relation("sent")
+    messagesReceived Message[] @relation("received")
+    createdAt        DateTime  @default(now())
+    updatedAt        DateTime  @default(now()) @updatedAt
+    isAdmin          Boolean   @default(false)
+}
+
+model Message {
+    id         Int      @id @default(autoincrement())
+    messageId  String   @default(uuid()) @db.Char(36)
+    content    String
+    author     User     @relation(fields: [authorId], references: [id], name: "sent")
+    authorId   Int
+    receiver   User     @relation(fields: [receiverId], references: [id], name: "received")
+    receiverId Int
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @default(now()) @updatedAt
+}

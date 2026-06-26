@@ -1,0 +1,27 @@
+@use "_variables" as *;
+
+@keyframes blinking {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.cool-bg {
+    background-color: $mainOrange;
+    width: 100%;
+    height: 100%;
+}
+
+.blinking {
+    animation-name: blinking;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+
+}

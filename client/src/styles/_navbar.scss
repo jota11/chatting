@@ -1,0 +1,39 @@
+@use "_variables" as *;
+
+nav#global-navbar {
+    // margin: 0 0 20px 0;
+    // padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+            cursor: pointer;
+        }
+
+        a {
+            list-style: none;
+            margin-right: 10px;
+        }
+    }
+
+    button {
+        border: 0;
+        outline: 0;
+        background: none;
+    }
+}
+
+
+#main-logo {
+    color: $black1;
+
+    h1 {
+        margin: 0 0 0 5px;
+        line-height: 100%;
+    }
+}

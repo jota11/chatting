@@ -1,0 +1,87 @@
+@use "_variables" as *;
+
+// #main-homepage {
+//     margin: 0 auto;
+//     width: 80%;
+//     max-width: 1600px;
+//     height: 100%;
+// }
+
+#chat-header {
+    background-color: #EEE;
+    padding: 10px;
+    height: 10%;
+    justify-content: space-between;
+
+    .contact-info {
+        img {
+            width: 70px;
+            height: 70px;
+            border-radius: 100%;
+            margin-right: 10px;
+        }
+
+        p {
+            font-size: 23px;
+            margin: 0;
+        }
+    }
+}
+
+#chat-container {
+    background-color: #AAA;
+    background-image: url("../assets/lol.jpg");
+    color: $black1;
+    width: 100%;
+    height: 100%;
+}
+
+#chat-window {
+    background-color: #777;
+    background-image: url("../assets/lol.jpg");
+    height: 80%;
+    overflow: scroll;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-bottom {
+    background-color: #DDD;
+    height: 10%;
+    padding: 10px;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+
+    #message-box {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        textarea {
+            background-color: #CCC5;
+            border: 0;
+            font-size: 16px;
+            padding: 10px;
+            font-family: $secondaryFont;
+            max-height: inherit;
+            resize: none;
+            width: inherit;
+            outline: 0;
+            border-radius: 10px;
+        }
+
+        button {
+            background: #0000;
+            outline: 0;
+            border: 0;
+        }
+    }
+}
+
+#chat-container-no-chat-selected {
+    color: $black1;
+    text-align: center;
+    width: 100%;
+}

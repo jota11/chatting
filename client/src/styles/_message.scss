@@ -1,0 +1,31 @@
+@use "_variables" as *;
+
+.chat-message {
+    width: auto;
+    max-width: 50%;
+    background-color: #9993;
+    margin: 3px 0;
+    padding: 8px;
+    font-family: $secondaryFont;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    white-space: pre-wrap;
+    word-break: break-word;
+
+    time {
+        display: flex;
+        justify-content: right;
+        font-size: 11px;
+    }
+}
+
+.yours {
+    text-align: right;
+    align-self: end;
+}
+
+.notyours {
+    text-align: left;
+    align-self: baseline;
+}

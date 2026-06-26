@@ -1,0 +1,13 @@
+{
+  "name": "chatting-server",
+  "description": "Chatting server",
+  "version": "0.1.0",
+  "author": "jota11",
+  "license": "GPL-3.0",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  }
+}
