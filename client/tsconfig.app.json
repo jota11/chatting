@@ -32,6 +32,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
+    "useUnknownInCatchVariables": false,
+    "ignoreDeprecations": "6.0",
     "baseUrl": "src",
     "paths": {
       "@assets/*": ["assets/*"],
@@ -42,7 +44,6 @@
       "@store/*": ["store/*"],
     },
   },
-  /* "include": ["src"], */
   "include": ["src", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],
 }

@@ -1,51 +1,10 @@
 import { axiosInstance } from "../lib/axios";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { AuthStore } from "./auth";
 import type { AxiosResponse } from "axios";
 import { create } from "zustand";
-
-interface IChatUser {
-    // id: string;
-    id: number;
-    name: string;
-    email: string;
-    // userId: number;
-    userId: string;
-}
-
-interface IMessage {
-    messageId: string;
-    authorId: number;
-    receiverId: number;
-    content: string;
-    createdAt: string;
-    updatedAt: string;
-}
-
-interface ISendMessage {
-    text: string;
-}
-
-interface ChatState {
-    messages: IMessage[];
-    users: IChatUser[];
-    selectedUser: IChatUser | null;
-    isUsersLoading: boolean;
-    isMessagesLoading: boolean;
-
-    getUsers: () => Promise<void>;
-    getMessages: (userId: number) => Promise<void>;
-    sendMessage: (messageData: ISendMessage) => Promise<void>;
-    subscribeToMessages: () => void;
-    unsubscribeFromMessages: () => void;
-    setSelectedUser: (selectedUser: IChatUser | null) => void;
-}
-
-const errMsgHandler = (context: string, err: unknown) => {
-    const msg = err instanceof Error ? err.message : "Unknown Error";
-    console.error(`${context}`, msg);
-    toast.error("Error!" + context);
-}
+import type { IChatUser, IMessage, ISendMessage, ChatState } from "../types/index.ts";
+import { errMsgHandler } from "../consts.ts";
 
 export const ChatStore = create<ChatState>((set, get) => ({
     messages: [],
@@ -100,12 +59,12 @@ export const ChatStore = create<ChatState>((set, get) => ({
         socket.off("newMessage");
 
         socket.on("newMessage", (newMessage: IMessage) => {
-            const currentSelectedUser = get().selectedUser;
-            console.log("currentSelectedUser: " + currentSelectedUser);
+            // const currentSelectedUser = get().selectedUser;
+            // console.log("currentSelectedUser: ", currentSelectedUser);
 
-            const isMessageFromSelectedUser = newMessage.authorId === selectedUser.userId;
-            // console.log("newMessage userId: " + selectedUser.userId);
-            // console.log("newMessage authorId: " + newMessage.authorId);
+            const isMessageFromSelectedUser = newMessage.authorId === selectedUser.id;
+            // console.log("newMessage userId: ", selectedUser.userId);
+            // console.log("newMessage authorId: ", newMessage.authorId);
             if (!isMessageFromSelectedUser) {
                 return;
             }
@@ -121,7 +80,7 @@ export const ChatStore = create<ChatState>((set, get) => ({
         socket.off("newMessage");
     },
 
-    setSelectedUser: (selectedUser) => {
+    setSelectedUser: (selectedUser: any) => {
         set({ selectedUser });
     }
 }));

@@ -5,8 +5,9 @@
     color: $black1;
     width: 30%;
     height: 100%;
-    // padding: 0 20px 0 0;
+    padding: 0;
     border-right: 1px solid #0003;
+    position: relative;
 }
 
 #sidebar-info {
@@ -15,11 +16,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 15px;
+
+    h1 {
+        margin: 10px;
+    }
 }
 
 .sidebar-contact {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     border: 0;
     border-bottom: 1px solid #000;
     outline: 0;
@@ -59,4 +64,11 @@
             align-items: center;
         }
     }
+}
+
+#sidebar-bottom {
+    width: 100%;
+    background: red;
+    position: absolute;
+    bottom: 0;
 }

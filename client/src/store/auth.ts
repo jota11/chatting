@@ -3,51 +3,8 @@ import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 import { io, Socket } from "socket.io-client";
 import type { AxiosResponse } from "axios";
-
-interface IAuthUser {
-    // id: string;
-    id: number;
-    email: string;
-    name: string;
-    username: string;
-    description?: string;
-    profilePic?: string;
-}
-
-interface ISignUp {
-    email: string;
-    name: string;
-    username: string;
-    password: string;
-}
-
-interface ILogin {
-    email: string;
-    password: string;
-}
-
-interface AuthState {
-    onlineUsers: string[];
-    authUser: IAuthUser | null;
-    isSigningUp: boolean;
-    isLoggingIn: boolean;
-    isUpdatingProfile: boolean;
-    isCheckingAuth: boolean;
-    socket: Socket | null;
-
-    checkAuth: () => Promise<void>;
-    signup: (data: ISignUp) => Promise<void>;
-    login: (data: ILogin) => Promise<void>;
-    logout: () => Promise<void>;
-    connectSocket: () => void;
-    disconnectSocket: () => void;
-}
-
-const errMsgHandler = (context: string, err: unknown) => {
-    const msg = err instanceof Error ? err.message : "Unknown Error";
-    console.error(`${context}`, msg);
-    toast.error("Error!" + context);
-}
+import type { IAuthUser, ISignUp, ILogin, AuthState } from "../types/index.ts";
+import { SOCKET_URL, errMsgHandler } from "../consts.ts";
 
 export const AuthStore = create<AuthState>((set, get) => ({
     onlineUsers: [],
@@ -65,8 +22,7 @@ export const AuthStore = create<AuthState>((set, get) => ({
             get().connectSocket();
         } catch (err) {
             set({ authUser: null });
-            console.error("Error checking auth! No user logged in! " + err);
-            // errMsgHandler("error checking auth!", err);
+            errMsgHandler(err, "error checking auth!");
         } finally {
             set({ isCheckingAuth: false });
         }
@@ -84,7 +40,7 @@ export const AuthStore = create<AuthState>((set, get) => ({
             }
             get().connectSocket();
         } catch (err) {
-            errMsgHandler("error signing up!", err);
+            errMsgHandler(err, "error signing up!");
         } finally {
             set({ isSigningUp: false });
         }
@@ -102,7 +58,7 @@ export const AuthStore = create<AuthState>((set, get) => ({
             }
             get().connectSocket();
         } catch (err) {
-            errMsgHandler("error logging up!", err);
+            errMsgHandler(err, "error logging up!");
         } finally {
             set({ isLoggingIn: false });
         }
@@ -115,7 +71,7 @@ export const AuthStore = create<AuthState>((set, get) => ({
             toast.success("Logged out!");
             get().disconnectSocket();
         } catch (err) {
-            errMsgHandler("error logging out!", err);
+            errMsgHandler(err, "error logging out!");
         }
     },
 
@@ -124,7 +80,7 @@ export const AuthStore = create<AuthState>((set, get) => ({
 
         if (!authUser || socket?.connected) return;
 
-        const newSocket: Socket = io("http://localhost:5001", {
+        const newSocket: Socket = io(SOCKET_URL, {
             query: {
                 userId: authUser.id,
                 autoConnect: false
@@ -138,7 +94,6 @@ export const AuthStore = create<AuthState>((set, get) => ({
             set({ onlineUsers: userIds });
         });
 
-        console.log("[USERIDS] ", authUser);
     },
 
     disconnectSocket: () => {

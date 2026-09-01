@@ -5,7 +5,6 @@ import type { MouseEventHandler } from "react";
 
 interface Props {
     keyKey: string;
-    // keyKey: number;
     onClickFunc: MouseEventHandler;
     contactName: string;
     contactUserId: boolean;

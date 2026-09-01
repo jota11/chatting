@@ -20,7 +20,7 @@ export const Sidebar = () => {
     }, [getUsers]);
 
     const filteredUsers = showOnlineOnly ? users.filter(user => onlineUsers.includes(String(user.id))) : users;
-    console.log(filteredUsers);
+    // console.log("FilteredUsers: ", filteredUsers);
 
     if (isUsersLoading) {
         return <SidebarSkeleton/>;
@@ -37,7 +37,15 @@ export const Sidebar = () => {
                 </Link>
                 <AccountNavbarMenu/>
             </section>
-            <section>
+            {filteredUsers.map((user) => (
+                <ChatSidebarContact
+                    keyKey={user.userId}
+                    onClickFunc={() => setSelectedUser(user)}
+                    contactName={user.name}
+                    contactUserId={onlineUsers.includes(String(user.id))}
+                />
+            ))}
+            <section id="sidebar-bottom">
                 <div className="center">
                     <span>Hide offline users</span>
                     <input
@@ -47,14 +55,6 @@ export const Sidebar = () => {
                     />
                 </div>
             </section>
-            {filteredUsers.map((user) => (
-                <ChatSidebarContact
-                    keyKey={user.userId}
-                    onClickFunc={() => setSelectedUser(user)}
-                    contactName={user.name}
-                    contactUserId={onlineUsers.includes(String(user.id))}
-                />
-            ))}
         </aside>
     );
 };

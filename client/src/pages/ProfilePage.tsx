@@ -11,13 +11,12 @@ export const ProfilePage = () => {
     if (!authUser) {
         return;
     }
-    
+
     return (
         <section id="profile-card" className="center column">
             <p>Your profile information</p>
             <section id="profile-user-info-main" className="center column">
                 <img id="profile-user-avatar" src={authUser.profilePic || "/avatar.jpg"} alt="Profile avatar" />
-                {/* <label><input/></label> */}
             </section>
             <section id="profile-user-info">
                 <div className="form-entry different">
