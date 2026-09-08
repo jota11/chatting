@@ -14,3 +14,10 @@ This project mainly uses:
 My idea is to at least make it pretty in the following months instead of scrapping and never posting like I always do. The main functionality works, so now all I need to do is the frontend.
 
 I will document it better later...maybe
+
+If you want to run:
+
+- run "npm install" in both "client" and "server" folders
+- I used MySQL and Prisma for the database, check the .env_EXAMPLE and populate the fields with your values
+- after connecting, run "npx prisma generate" (the schema file is already there but you can modify to your liking)
+- run "npm run dev" in both "client" and "server" folders
